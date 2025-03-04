@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://4gkeagicsy2l"]
+
+[ext_resource type="Script" path="res://Tile.cs" id="1_uryvh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xj471"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y864i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgch7"]
+size = Vector3(1, 0.1, 1)
+
+[node name="Tile" type="Node3D"]
+script = ExtResource("1_uryvh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_xj471")
+surface_material_override/0 = SubResource("StandardMaterial3D_y864i")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_pgch7")
+
+[connection signal="input_event" from="StaticBody3D" to="." method="OnInputEvent"]
